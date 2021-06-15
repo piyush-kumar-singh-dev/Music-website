@@ -1,0 +1,37 @@
+{% extends 'markup/master.html' %}
+{% block title %}{{ album.name }}{% endblock %}
+{% block body %}
+    <div class="row">
+    <div class="col-3">
+        <div class="card" style="width: 18rem;">
+  <img src="{{ album.image.url }}" class="card-img-top" height="150px">
+  <div class="card-body">
+    <h5 class="card-title">{{ album.name }}</h5>
+    <p class="card-text">{{ album.artist }}</p>
+    </div>
+        </div>
+    </div>
+    <div class="col-9">
+        <table class="table table-bordered" style="background-color: aqua">
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>Artist</th>
+                <th>Genre</th>
+                <th>Options</th>
+                <th>Ratings</th>
+            </tr>
+            {% for i in album.song_set.all %}
+                <tr>
+                <td>{{ i.name }}</td>
+                <td>{{ i.artist }}</td>
+                <td>{{ i.genre }}</td>
+                <td><audio src="{{ i.file.url }}" controls="controls"></audio></td>
+                <td>Ratings</td>
+            </tr>
+            {% endfor %}
+            </thead>
+        </table>
+    </div>
+    </div>
+{% endblock %}
